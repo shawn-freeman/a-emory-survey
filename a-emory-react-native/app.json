@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "a-emory-react-native",
+    "slug": "a-emory-react-native",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "a-emory-react-native"
+}
