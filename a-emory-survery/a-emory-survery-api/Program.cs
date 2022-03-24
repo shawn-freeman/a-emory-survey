@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<EmorySurveyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EmorySurveyDb")));
+builder.Services.AddDbContext<EmorySurveyDbContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EmorySurveyDb")));
 
 var app = builder.Build();
 

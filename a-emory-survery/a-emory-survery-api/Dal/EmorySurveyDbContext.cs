@@ -9,6 +9,8 @@ namespace a_emory_survery_api.Dal
 
         }
 
+        public DbSet<SurveyEntry> SurveyEntry { get; set; }
+        public DbSet<SurveyQuestion> SurveyQuestion { get; set; }
         public DbSet<QuestionDefinition> QuestionDefinition { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
