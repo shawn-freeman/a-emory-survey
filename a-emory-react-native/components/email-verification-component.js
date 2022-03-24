@@ -3,45 +3,42 @@ import { Button, TouchableOpacity, StyleSheet, Text, TextInput, View } from 'rea
 import { Pages } from '../constants/pages';
 import { appStyles } from '../constants/styles';
 
-export class EmailEntryComponent extends React.Component
+export class EmailVerificationComponent extends React.Component
 {
     state = {
-        email: ''
+        code: ''
    }
 
-   handleEmail = (text) => {
-      this.setState({ email: text});
+   handleCodeEntry = (text) => {
+      this.setState({ code: text});
    }
 
-    submitEmail = async (email) => {
-      if(email.length > 0){
-         this.props.navigation.navigate(Pages.EmailVerification, { email: email});
-      }
-      alert("Email entered: " + email);
+    submitCode = async (code) => {
+      alert("Code entered: " + code);
     }
 
     render(){
     return (
        <View>
          <View style={appStyles.container}>
-         <Text>Welcome to A Emory Survey!</Text>
+         <Text>Email Verification</Text>
 
-         <Text>To begin, please enter a valid email address</Text>
-
+         <Text>Enter the verification code below:</Text>
+         
          <TextInput style = {appStyles.input}
                   underlineColorAndroid = "transparent"
-                  placeholder = "Email"
+                  placeholder = "Verification Code"
                   autoCapitalize = "none"
-                  value={this.state.email}
-                  onChangeText = {this.handleEmail}/>
+                  value={this.state.code}
+                  onChangeText = {this.handleCodeEntry}/>
 
          <View style={localStyles.buttonContainer} >
             <TouchableOpacity
                   style = {appStyles.buttonPrimary}
                   onPress = {
-                     () => this.submitEmail(this.state.email)
+                     () => this.submitCode(this.state.code)
                   }>
-                  <Text style = {localStyles.submitButtonText}> Submit </Text>
+                  <Text style = {localStyles.submitButtonText}>Submit Code</Text>
                </TouchableOpacity>
             </View>
          </View>
