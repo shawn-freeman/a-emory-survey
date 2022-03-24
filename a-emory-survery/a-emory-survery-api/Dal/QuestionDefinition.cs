@@ -3,8 +3,6 @@
     public class QuestionDefinition
     {
         public int Id { get; set; }
-        public int EntryId { get; set; }
-        public int Text { get; set; }
-        public int Description { get; set; }
+        public string Description { get; set; }
     }
 }
