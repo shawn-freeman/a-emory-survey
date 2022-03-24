@@ -1,5 +1,5 @@
 export class Pages{
-    static SurveyStart = 'SurveyStart';
+    static EmailEntry = 'EmailEntry';
     static EmailVerification = 'EmailVerification';
     static Question = 'Question';
 }
