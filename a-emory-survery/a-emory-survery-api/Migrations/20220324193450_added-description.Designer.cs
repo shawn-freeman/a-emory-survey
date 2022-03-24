@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using a_emory_survery_api.Dal;
 
@@ -10,9 +11,10 @@ using a_emory_survery_api.Dal;
 namespace a_emory_survery_api.Migrations
 {
     [DbContext(typeof(EmorySurveyDbContext))]
-    partial class EmorySurveyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220324193450_added-description")]
+    partial class addeddescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
