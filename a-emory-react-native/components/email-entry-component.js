@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, TouchableOpacity, StyleSheet, Text, TextInput, View } from 'react-native';
+import { HttpHandler } from '../services/httpHandler';
 import { Pages } from '../constants/pages';
 import { appStyles } from '../constants/styles';
 
@@ -14,39 +15,39 @@ export class EmailEntryComponent extends React.Component
    }
 
     submitEmail = async (email) => {
-      if(email.length > 0){
+      let result = await new HttpHandler().GetIsEmailValid(email);
+      
+      if(result){
          this.props.navigation.navigate(Pages.EmailVerification, { email: email});
       }
       alert("Email entered: " + email);
     }
 
     render(){
-    return (
-       <View>
+      return (
          <View style={appStyles.container}>
-         <Text>Welcome to A Emory Survey!</Text>
+            <Text>Welcome to A Emory Survey!</Text>
 
-         <Text>To begin, please enter a valid email address</Text>
+            <Text>To begin, please enter a valid email address</Text>
 
-         <TextInput style = {appStyles.input}
-                  underlineColorAndroid = "transparent"
-                  placeholder = "Email"
-                  autoCapitalize = "none"
-                  value={this.state.email}
-                  onChangeText = {this.handleEmail}/>
+            <TextInput style = {appStyles.input}
+                     underlineColorAndroid = "transparent"
+                     placeholder = "Email"
+                     autoCapitalize = "none"
+                     value={this.state.email}
+                     onChangeText = {this.handleEmail}/>
 
-         <View style={localStyles.buttonContainer} >
-            <TouchableOpacity
-                  style = {appStyles.buttonPrimary}
-                  onPress = {
-                     () => this.submitEmail(this.state.email)
-                  }>
-                  <Text style = {localStyles.submitButtonText}> Submit </Text>
-               </TouchableOpacity>
+            <View style={localStyles.buttonContainer} >
+               <TouchableOpacity
+                     style = {appStyles.buttonPrimary}
+                     onPress = {
+                        () => this.submitEmail(this.state.email)
+                     }>
+                     <Text style = {localStyles.submitButtonText}> Submit </Text>
+                  </TouchableOpacity>
             </View>
          </View>
-       </View>
-   );
+      );
   }
 }
 
