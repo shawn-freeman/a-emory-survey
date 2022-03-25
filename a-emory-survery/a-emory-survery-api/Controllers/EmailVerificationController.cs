@@ -32,8 +32,13 @@ namespace a_emory_survery_api.Controllers
                 // (@)          Match the @ character. This part is the first capturing group.
                 // (.+)         Match one or more occurrences of any character. This part is the second capturing group.
                 // $ 	        End the match at the end of the string.
-                var normalizedEmail = Regex.Replace(emailAddress, @"(@)(.+)$", DomainMapper,
-                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
+                var normalizedEmail = Regex.Replace(
+                    emailAddress, 
+                    @"(@)(.+)$", 
+                    DomainMapper,
+                    RegexOptions.None, 
+                    TimeSpan.FromMilliseconds(200)
+                    );
 
                 // Examines the domain part of the email and normalizes it.
                 string DomainMapper(Match match)
