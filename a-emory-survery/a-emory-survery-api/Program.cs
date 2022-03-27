@@ -1,9 +1,18 @@
 global using a_emory_survery_api.Dal;
-global using System.Configuration;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.EntityFrameworkCore;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+                      {
+                          builder.WithOrigins("http://localhost:19006",
+                                              "https://localhost:19006");
+                      });
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -24,6 +33,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+//Must be called after .UseRouting() and before .UseAuthorization()
+app.UseCors();
 
 app.UseAuthorization();
 
