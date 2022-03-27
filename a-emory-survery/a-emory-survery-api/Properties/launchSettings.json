@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "a_emory_survery_api": {
+    "a_emory_survey_api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

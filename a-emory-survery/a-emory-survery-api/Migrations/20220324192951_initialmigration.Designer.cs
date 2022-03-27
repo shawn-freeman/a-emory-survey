@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using a_emory_survery_api.Dal;
+using a_emory_survey_api.Dal;
 
 #nullable disable
 
-namespace a_emory_survery_api.Migrations
+namespace a_emory_survey_api.Migrations
 {
     [DbContext(typeof(EmorySurveyDbContext))]
     [Migration("20220324192951_initialmigration")]
@@ -23,7 +23,7 @@ namespace a_emory_survery_api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("a_emory_survery_api.Dal.QuestionDefinition", b =>
+            modelBuilder.Entity("a_emory_survey_api.Dal.QuestionDefinition", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

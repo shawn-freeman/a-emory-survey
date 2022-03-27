@@ -1,8 +1,8 @@
-﻿using a_emory_survery_api.Models;
+﻿using a_emory_survey_api.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace a_emory_survery_api.Controllers
+namespace a_emory_survey_api.Controllers
 {
     public class HomeController : Controller
     {

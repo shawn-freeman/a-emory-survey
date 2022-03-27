@@ -1,4 +1,4 @@
-namespace a_emory_survery_api.Models
+namespace a_emory_survey_api.Models
 {
     public class ErrorViewModel
     {

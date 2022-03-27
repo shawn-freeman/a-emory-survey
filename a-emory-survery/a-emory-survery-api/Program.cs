@@ -1,4 +1,4 @@
-global using a_emory_survery_api.Dal;
+global using a_emory_survey_api.Dal;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.EntityFrameworkCore;
 

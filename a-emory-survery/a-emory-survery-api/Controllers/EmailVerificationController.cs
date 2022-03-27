@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace a_emory_survery_api.Controllers
+namespace a_emory_survey_api.Controllers
 {
     public class EmailVerificationController : Controller
     {

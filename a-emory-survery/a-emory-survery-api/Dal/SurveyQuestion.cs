@@ -1,4 +1,4 @@
-﻿namespace a_emory_survery_api.Dal
+﻿namespace a_emory_survey_api.Dal
 {
     public class SurveyQuestion
     {

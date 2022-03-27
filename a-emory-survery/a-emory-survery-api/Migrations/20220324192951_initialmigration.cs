@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace a_emory_survery_api.Migrations
+namespace a_emory_survey_api.Migrations
 {
     public partial class initialmigration : Migration
     {
