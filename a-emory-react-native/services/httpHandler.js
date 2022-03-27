@@ -29,4 +29,26 @@ export class HttpHandler {
 
        return result;
     }
+    
+    async GetSurveyQuestions(){
+      let result = await fetch(`${this.baseUrl}SurveyQuestion/GetSurveyQuestions`, {
+         method: 'GET'
+      })
+      .then((response) => { 
+         if(response.status === 200){
+           if(response.bodyUsed === true){
+              return response.body.json(); 
+           }else{
+              return true;
+           }
+         }else{
+            alert(`API RETURN ERROR: ${response.json()}`);
+         }
+        })
+      .catch((error) => {
+         console.error("Error: " + error);
+      });
+
+      return result;
+   }
  }
