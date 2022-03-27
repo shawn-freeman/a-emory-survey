@@ -16,11 +16,10 @@ export class EmailEntryComponent extends React.Component
 
     submitEmail = async (email) => {
       let result = await new HttpHandler().GetIsEmailValid(email);
-      
+      console.log("GetIsEmailValidResult: " + result);
       if(result){
          this.props.navigation.navigate(Pages.EmailVerification, { email: email});
       }
-      alert("Email entered: " + email);
     }
 
     render(){
