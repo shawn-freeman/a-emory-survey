@@ -44,6 +44,19 @@ export class EmailEntryComponent extends React.Component
                      }>
                      <Text style = {localStyles.submitButtonText}> Submit </Text>
                   </TouchableOpacity>
+                  
+            </View>
+
+            <View style={localStyles.buttonContainerVertical} >
+               <Text>Already have a code?</Text>
+
+               <TouchableOpacity
+                     style = {appStyles.buttonPrimary}
+                     onPress = {
+                        () => this.props.navigation.navigate(Pages.EmailVerification)
+                     }>
+                     <Text style = {localStyles.submitButtonText}>Enter Code</Text>
+                  </TouchableOpacity>
             </View>
          </View>
       );
@@ -53,6 +66,12 @@ export class EmailEntryComponent extends React.Component
 const localStyles = StyleSheet.create({
    buttonContainer: {
       flexDirection: 'row',
+      alignItems: 'center',
+   },
+   buttonContainerVertical: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      paddingTop: '20px'
    },
    submitButtonText:{
       color: 'white'

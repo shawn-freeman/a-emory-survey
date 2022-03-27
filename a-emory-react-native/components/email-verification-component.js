@@ -21,8 +21,6 @@ export class EmailVerificationComponent extends React.Component
     return (
        <View>
          <View style={appStyles.container}>
-         <Text>Email Verification</Text>
-
          <Text>Enter the verification code below:</Text>
          
          <TextInput style = {appStyles.input}
@@ -33,6 +31,14 @@ export class EmailVerificationComponent extends React.Component
                   onChangeText = {this.handleCodeEntry}/>
 
          <View style={localStyles.buttonContainer} >
+            <TouchableOpacity
+                  style = {appStyles.buttonPrimary}
+                  onPress = {
+                     () => this.props.navigation.navigate(Pages.EmailEntry)
+                  }>
+                  <Text style = {localStyles.submitButtonText}>Back</Text>
+               </TouchableOpacity>
+
             <TouchableOpacity
                   style = {appStyles.buttonPrimary}
                   onPress = {
