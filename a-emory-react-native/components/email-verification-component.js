@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, TouchableOpacity, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Pages } from '../constants/pages';
 import { appStyles } from '../constants/styles';
+import { HttpHandler } from '../services/httpHandler';
 
 export class EmailVerificationComponent extends React.Component
 {
@@ -14,7 +15,9 @@ export class EmailVerificationComponent extends React.Component
    }
 
     submitCode = async (code) => {
-      alert("Code entered: " + code);
+      const result = await new HttpHandler().GetSurveyQuestions();
+      console.log("GetSurveyQuestions: " + result);
+      alert("Result entered: " + result);
     }
 
     render(){

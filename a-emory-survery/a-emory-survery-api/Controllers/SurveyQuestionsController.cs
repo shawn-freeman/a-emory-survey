@@ -6,10 +6,10 @@ using System.Text.RegularExpressions;
 
 namespace a_emory_survery_api.Controllers
 {
-    public class SurveryQuestionsController : Controller
+    public class SurveyQuestionsController : Controller
     {
         private EmorySurveyDbContext _dbContext;
-        public SurveryQuestionsController(EmorySurveyDbContext dbContext)
+        public SurveyQuestionsController(EmorySurveyDbContext dbContext)
         {
             this._dbContext = dbContext;
         }

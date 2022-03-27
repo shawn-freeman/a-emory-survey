@@ -31,7 +31,7 @@ export class HttpHandler {
     }
     
     async GetSurveyQuestions(){
-      let result = await fetch(`${this.baseUrl}SurveyQuestion/GetSurveyQuestions`, {
+      let result = await fetch(`${this.baseUrl}SurveyQuestions/GetSurveyQuestions`, {
          method: 'GET'
       })
       .then((response) => { 
