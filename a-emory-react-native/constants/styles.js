@@ -27,7 +27,6 @@ export const appStyles = StyleSheet.create({
       placeholderTextColor: 'black',
       borderWidth: 5,
       borderRadius: 10,
-      alignItems: 'flex-start',
    },
      buttonPrimary: {
         backgroundColor: '#7a42f4',

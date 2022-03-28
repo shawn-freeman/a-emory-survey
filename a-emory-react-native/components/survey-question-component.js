@@ -7,13 +7,23 @@ import { HttpHandler } from '../services/httpHandler';
 export class SurveyQuestionComponent extends React.Component
 {
     state = {
-        allQuestions: [],
-        currentQuestion: {},
+        allQuestions: this.props.route.params.questions,
+        currentQuestion: this.props.route.params.questions[0],
         answer: ''
    }
 
    getNextQuestion(){
-    alert('getNextQuestion()');
+    console.log(this.state.allQuestions);
+    //TODO: Make API call to answer the current question
+
+
+    let nextIndex = this.state.allQuestions.indexOf(this.state.currentQuestion) + 1;
+    
+    if(nextIndex >= this.state.allQuestions.length){
+        this.props.navigation.navigate(Pages.EmailEntry);
+    }
+
+    this.setState({ currentQuestion: this.state.allQuestions[nextIndex]});
    }
 
    handleAnswerEntry = (text) => {
@@ -24,12 +34,13 @@ export class SurveyQuestionComponent extends React.Component
     return (
        <View>
          <View style={appStyles.container}>
-         <Text>Question Description goes here.</Text>
+         <Text>{this.state.currentQuestion.description}</Text>
          
          <TextInput style = {appStyles.inputQuestionAnswer}
                   underlineColorAndroid = "transparent"
                   placeholder = "Enter your answer here"
                   autoCapitalize = "none"
+                  multiline={true}
                   value={this.state.currentQuestion.Answer}
                   onChangeText = {this.handleAnswerEntry}/>
 
