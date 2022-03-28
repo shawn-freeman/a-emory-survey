@@ -8,6 +8,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { EmailEntryComponent } from './components/email-entry-component.js';
 import { EmailVerificationComponent } from './components/email-verification-component.js';
+import { SurveyQuestionComponent } from './components/survey-question-component.js';
 
 const Stack = createNativeStackNavigator();
 Stack.Navigator.defaultProps = {
@@ -33,6 +34,7 @@ export default class App extends React.Component{
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name={Pages.EmailEntry} component={EmailEntryComponent} />
         <Stack.Screen name={Pages.EmailVerification} component={EmailVerificationComponent} />
+        <Stack.Screen name={Pages.SurveyQuestion} component={SurveyQuestionComponent} />
       </Stack.Navigator>
     </NavigationContainer>)
     

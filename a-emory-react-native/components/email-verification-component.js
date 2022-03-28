@@ -15,11 +15,9 @@ export class EmailVerificationComponent extends React.Component
    }
 
     submitCode = async (code) => {
-      let result = new Array(await new HttpHandler().GetSurveyQuestions(code));
+      let result = await new HttpHandler().GetSurveyQuestions(code);
 
-      result.forEach(element => {
-         console.log(element);
-      });
+      this.props.navigation.navigate(Pages.SurveyQuestion, result);
     }
 
     render(){

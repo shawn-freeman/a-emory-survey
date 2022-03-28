@@ -10,12 +10,25 @@ export const appStyles = StyleSheet.create({
      },
      input: {
         margin: 15,
+        padding: 10,
         height: 40,
         backgroundColor: '#DDB3DB',
         borderColor: '#9800DD',
         placeholderTextColor: 'black',
-        borderWidth: 3
+        borderWidth: 5,
+        borderRadius: 10,
      },
+     inputQuestionAnswer: {
+      margin: 15,
+      padding: 10,
+      height: '25%',
+      backgroundColor: '#DDB3DB',
+      borderColor: '#9800DD',
+      placeholderTextColor: 'black',
+      borderWidth: 5,
+      borderRadius: 10,
+      alignItems: 'flex-start',
+   },
      buttonPrimary: {
         backgroundColor: '#7a42f4',
         padding: 10,
