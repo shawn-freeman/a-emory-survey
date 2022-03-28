@@ -18,14 +18,21 @@ namespace a_emory_survey_api.Controllers
         /// Gets survey questions that have not been answered yet.
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetSurveyQuestions()
+        public ActionResult GetSurveyQuestions(string code)
         {
-            var questions = _dbContext.SurveyQuestion
-                .Include(sq => sq.QuestionDefinition)
-                .Include(sq => sq.SurveyEntry)
+            var unansweredQuestionDefinitions = _dbContext.QuestionDefinition
+                .Where(qd => _dbContext.SurveyQuestion.FirstOrDefault(sq => sq.SurveyEntry.VerificationCode == code && sq.QuestionDefinition.Id == qd.Id) == null)
                 .ToList();
-                
-            return Ok(questions);
+
+            return Ok(unansweredQuestionDefinitions);
+        }
+
+        public ActionResult AnswerQuestion(SurveyQuestion question)
+        {
+            _dbContext.SurveyQuestion.Add(question);
+            _dbContext.SaveChanges();
+
+            return Ok(true);
         }
     }
 }

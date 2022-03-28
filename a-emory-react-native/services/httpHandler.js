@@ -13,15 +13,10 @@ export class HttpHandler {
           method: 'GET'
        })
        .then((response) => { 
-          if(response.status === 200){
-            if(response.bodyUsed === true){
-               return response.body.json(); 
-            }else{
-               return true;
-            }
-          }else{
-             alert(`API RETURN ERROR: ${response.json()}`);
-          }
+          return response.json(); 
+         })
+         .then(responseData => {
+           return responseData;
          })
        .catch((error) => {
           console.error("Error: " + error);
@@ -30,22 +25,19 @@ export class HttpHandler {
        return result;
     }
     
-    async GetSurveyQuestions(){
-      let result = await fetch(`${this.baseUrl}SurveyQuestions/GetSurveyQuestions`, {
-         method: 'GET'
-      })
-      .then((response) => { 
-         if(response.status === 200){
-           if(response.bodyUsed === true){
-              return response.body.json(); 
-           }else{
-              return true;
-           }
-         }else{
-            alert(`API RETURN ERROR: ${response.json()}`);
-         }
+    async GetSurveyQuestions(code){
+      let result = await fetch(`${this.baseUrl}SurveyQuestions/GetSurveyQuestions?code=${code}`, {
+         method: 'GET',
+         // headers: {
+         //    "Accept": "application/json",
+         //    'Content-Type': 'application/json'
+         //    }
         })
-      .catch((error) => {
+        .then(response => { return response.json();})
+        .then(responseData => {
+           return responseData;
+         })
+         .catch((error) => {
          console.error("Error: " + error);
       });
 

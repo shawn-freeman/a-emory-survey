@@ -15,9 +15,11 @@ export class EmailVerificationComponent extends React.Component
    }
 
     submitCode = async (code) => {
-      const result = await new HttpHandler().GetSurveyQuestions();
-      console.log("GetSurveyQuestions: " + result);
-      alert("Result entered: " + result);
+      let result = new Array(await new HttpHandler().GetSurveyQuestions(code));
+
+      result.forEach(element => {
+         console.log(element);
+      });
     }
 
     render(){

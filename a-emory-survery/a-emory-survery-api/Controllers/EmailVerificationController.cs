@@ -34,7 +34,7 @@ namespace a_emory_survey_api.Controllers
                 {
 
                 }
-                return Ok();
+                return Ok(true);
             }
             else
             {
