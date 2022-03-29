@@ -58,6 +58,16 @@ export class EmailEntryComponent extends React.Component
                      <Text style = {localStyles.submitButtonText}>Enter Code</Text>
                   </TouchableOpacity>
             </View>
+
+            <View>
+               <TouchableOpacity
+                     style = {appStyles.buttonCircle}
+                     onPress = {
+                        () => this.props.navigation.navigate(Pages.AboutSurvey)
+                     }>
+                     <Text style = {localStyles.questionMarkButtonText}>?</Text>
+                  </TouchableOpacity>
+            </View>
          </View>
       );
   }
@@ -75,5 +85,9 @@ const localStyles = StyleSheet.create({
    },
    submitButtonText:{
       color: 'white'
+   },
+   questionMarkButtonText:{
+      color: 'white',
+      fontSize: 36,
    },
 });

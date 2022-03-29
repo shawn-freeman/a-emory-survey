@@ -28,10 +28,20 @@ export const appStyles = StyleSheet.create({
       borderWidth: 5,
       borderRadius: 10,
    },
-     buttonPrimary: {
-        backgroundColor: '#7a42f4',
-        padding: 10,
-        margin: 15,
-        height: 40,
-     },
+   buttonPrimary: {
+      backgroundColor: '#7a42f4',
+      padding: 10,
+      margin: 15,
+      height: 40,
+   },
+   buttonCircle: {
+      backgroundColor: '#7a42f4',
+      padding: 10,
+      margin: 15,
+      height: 50,
+      width: 50,
+      borderRadius: 25,
+      alignItems: 'center',
+      justifyContent: 'center',
+   },
   });
