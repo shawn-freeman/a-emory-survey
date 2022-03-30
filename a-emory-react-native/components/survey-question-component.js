@@ -35,6 +35,10 @@ export class SurveyQuestionComponent extends React.Component
     }
    }
 
+   async exitSurvey(){
+      this.props.navigation.navigate(Pages.EmailEntry);
+   }
+
    handleAnswerEntry = (text) => {
     this.setState({ 
        currentQuestion: {
@@ -70,6 +74,14 @@ export class SurveyQuestionComponent extends React.Component
                      }>
                      <Text style = {localStyles.submitButtonText}>Next</Text>
                   </TouchableOpacity>
+
+                  <TouchableOpacity
+                     style = {appStyles.buttonPrimary}
+                     onPress = {
+                        () => { this.exitSurvey(); }
+                     }>
+                     <Text style = {localStyles.submitButtonText}>Exit</Text>
+                  </TouchableOpacity>
                </View>
           </View>
        </View>
@@ -102,7 +114,7 @@ const localStyles = StyleSheet.create({
    },
    buttonContainer: {
       flex: 1,
-      flexDirection: 'row',
+      flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
    },
