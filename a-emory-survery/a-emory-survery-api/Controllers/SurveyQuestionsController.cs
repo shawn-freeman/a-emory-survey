@@ -36,6 +36,7 @@ namespace a_emory_survey_api.Controllers
         [HttpPost]
         public ActionResult AnswerQuestion([FromBody]SurveyQuestion surveyQuestion)
         {
+            surveyQuestion.IsAnswered = true;
             _dbContext.SurveyQuestion.Update(surveyQuestion);
             _dbContext.SaveChanges();
 
