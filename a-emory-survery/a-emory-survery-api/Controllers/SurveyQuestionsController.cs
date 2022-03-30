@@ -24,6 +24,7 @@ namespace a_emory_survey_api.Controllers
                 .Where(qd => _dbContext.SurveyQuestion.FirstOrDefault(sq => sq.SurveyEntry.VerificationCode == code && sq.QuestionDefinition.Id == qd.Id) == null)
                 .Select(qd => new SurveyQuestion() { 
                     SurveyEntryId = entry.Id,
+                    SurveyEntry = entry,
                     QuestionDefinitionId = qd.Id,
                     QuestionDefinition = qd,
                 })
