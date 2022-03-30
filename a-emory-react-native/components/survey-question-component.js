@@ -9,20 +9,31 @@ export class SurveyQuestionComponent extends React.Component
     state = {
         allQuestions: this.props.route.params.questions,
         currentQuestion: this.props.route.params.questions[0],
-        answer: ''
    }
 
    async getNextQuestion(){
     console.log(this.state.currentQuestion);
     let result = await new HttpHandler().AnswerQuestion(this.state.currentQuestion);
-    console.log(result);
-    let nextIndex = this.state.allQuestions.indexOf(this.state.currentQuestion) + 1;
-    
-    if(nextIndex >= this.state.allQuestions.length){
-        this.props.navigation.navigate(Pages.EmailEntry);
-   }
 
-    this.setState({ currentQuestion: this.state.allQuestions[nextIndex]});
+    if(result === true){
+      let nextIndex = this.state.allQuestions
+         .findIndex(question => 
+            question.questionDefinition === this.state.currentQuestion.questionDefinition) + 1;
+    
+      if(nextIndex >= this.state.allQuestions.length){
+          this.props.navigation.navigate(Pages.EmailEntry);
+        }else{
+           this.setState({ 
+              currentQuestion: {
+                 ...this.state.allQuestions[nextIndex],
+                 answer: ''
+              }
+           });
+        }
+    }else{
+       alert('An error occured.');
+    }
+    
    }
 
    handleAnswerEntry = (text) => {
@@ -45,7 +56,7 @@ export class SurveyQuestionComponent extends React.Component
                   placeholder = "Enter your answer here"
                   autoCapitalize = "none"
                   multiline={true}
-                  value={this.state.currentQuestion.answer}
+                  value={this.state.currentQuestion.answer || ''}
                   onChangeText = {this.handleAnswerEntry}/>
 
          <View style={localStyles.buttonContainer} >

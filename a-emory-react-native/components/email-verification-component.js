@@ -17,7 +17,11 @@ export class EmailVerificationComponent extends React.Component
     submitCode = async (code) => {
       let result = await new HttpHandler().GetSurveyQuestions(code);
 
-      this.props.navigation.navigate(Pages.SurveyQuestion, { questions: result });
+      if(result.some(a => a)){
+         this.props.navigation.navigate(Pages.SurveyQuestion, { questions: result });
+      }else{
+         alert('All questions have been answered for this survey. Thank you for your participation.');
+      }
     }
 
     render(){
