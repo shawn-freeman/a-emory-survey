@@ -26,16 +26,17 @@ export class EmailVerificationComponent extends React.Component
 
     render(){
     return (
-       <View>
-         <View style={appStyles.container}>
-         <Text>Enter the verification code below:</Text>
-         
-         <TextInput style = {appStyles.input}
-                  underlineColorAndroid = "transparent"
-                  placeholder = "Verification Code"
-                  autoCapitalize = "none"
-                  value={this.state.code}
-                  onChangeText = {this.handleCodeEntry}/>
+       <View style={appStyles.container}>
+         <View style={localStyles.codeContainer} >
+            <Text>Enter the verification code below:</Text>
+            
+            <TextInput style = {appStyles.input}
+                     underlineColorAndroid = "transparent"
+                     placeholder = "Verification Code"
+                     autoCapitalize = "none"
+                     value={this.state.code}
+                     onChangeText = {this.handleCodeEntry}/>
+         </View>
 
          <View style={localStyles.buttonContainer} >
             <TouchableOpacity
@@ -54,14 +55,19 @@ export class EmailVerificationComponent extends React.Component
                   <Text style = {localStyles.submitButtonText}>Submit Code</Text>
                </TouchableOpacity>
             </View>
-         </View>
        </View>
    );
   }
 }
 
 const localStyles = StyleSheet.create({
+   codeContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+   },
    buttonContainer: {
+      flex: 1,
       flexDirection: 'row',
    },
    submitButtonText:{
