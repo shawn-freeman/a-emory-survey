@@ -3,8 +3,10 @@
     public class SurveyQuestion
     {
         public int Id { get; set; }
-        public SurveyEntry SurveyEntry { get; set; }
-        public QuestionDefinition QuestionDefinition { get; set; }
+        public int SurveyEntryId { get; set; }
+        public virtual SurveyEntry SurveyEntry { get; set; }
+        public int QuestionDefinitionId { get; set; }
+        public virtual QuestionDefinition QuestionDefinition { get; set; }
 
         public string Answer { get; set; }
         public bool IsAnswered { get; set; }
