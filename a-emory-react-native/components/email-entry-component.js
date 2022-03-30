@@ -25,27 +25,31 @@ export class EmailEntryComponent extends React.Component
     render(){
       return (
          <View style={appStyles.container}>
-            <Text>Welcome to A Emory Survey!</Text>
-
-            <Text>To begin, please enter a valid email address</Text>
-
-            <TextInput style = {appStyles.input}
-                     underlineColorAndroid = "transparent"
-                     placeholder = "Email"
-                     autoCapitalize = "none"
-                     value={this.state.email}
-                     onChangeText = {this.handleEmail}/>
-
-            <View style={localStyles.buttonContainer} >
-               <TouchableOpacity
-                     style = {appStyles.buttonPrimary}
-                     onPress = {
-                        () => this.submitEmail(this.state.email)
-                     }>
-                     <Text style = {localStyles.submitButtonText}> Submit </Text>
-                  </TouchableOpacity>
-                  
+            <View style={localStyles.headerContainer} >
+               <h1>Welcome to <strong>A Emory Survey</strong>!</h1>
             </View>
+
+            <View style={localStyles.submitEmailContainer} >
+               <Text>To begin, enter a valid email address</Text>
+
+               <TextInput style = {appStyles.input}
+                        underlineColorAndroid = "transparent"
+                        placeholder = "Email"
+                        autoCapitalize = "none"
+                        value={this.state.email}
+                        onChangeText = {this.handleEmail}/>
+
+               <View style={localStyles.buttonContainer} >
+                  <TouchableOpacity
+                        style = {appStyles.buttonPrimary}
+                        onPress = {
+                           () => this.submitEmail(this.state.email)
+                        }>
+                        <Text style = {localStyles.submitButtonText}> Submit </Text>
+                     </TouchableOpacity>
+               </View>   
+            </View>
+            
 
             <View style={localStyles.buttonContainerVertical} >
                <Text>Already have a code?</Text>
@@ -59,7 +63,7 @@ export class EmailEntryComponent extends React.Component
                   </TouchableOpacity>
             </View>
 
-            <View>
+            <View style={localStyles.buttonContainerVertical} >
                <TouchableOpacity
                      style = {appStyles.buttonCircle}
                      onPress = {
@@ -74,11 +78,22 @@ export class EmailEntryComponent extends React.Component
 }
 
 const localStyles = StyleSheet.create({
+   headerContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+   },
+   submitEmailContainer: {
+      flex: 2,
+      justifyContent: 'center',
+      alignItems: 'center',
+   },
    buttonContainer: {
       flexDirection: 'row',
       alignItems: 'center',
    },
    buttonContainerVertical: {
+      flex: 1,
       flexDirection: 'column',
       alignItems: 'center',
       paddingTop: '20px'
