@@ -12,36 +12,40 @@ export class SurveyQuestionComponent extends React.Component
         answer: ''
    }
 
-   getNextQuestion(){
-    console.log(this.state.allQuestions);
-    //TODO: Make API call to answer the current question
-
-
+   async getNextQuestion(){
+    console.log(this.state.currentQuestion);
+    let result = await new HttpHandler().AnswerQuestion(this.state.currentQuestion);
+    console.log(result);
     let nextIndex = this.state.allQuestions.indexOf(this.state.currentQuestion) + 1;
     
     if(nextIndex >= this.state.allQuestions.length){
         this.props.navigation.navigate(Pages.EmailEntry);
-    }
+   }
 
     this.setState({ currentQuestion: this.state.allQuestions[nextIndex]});
    }
 
    handleAnswerEntry = (text) => {
-    this.setState({ answer: text});
+    this.setState({ 
+       currentQuestion: {
+          ...this.state.currentQuestion,
+          answer: text
+       }
+    });
     }
 
     render(){
     return (
        <View>
          <View style={appStyles.container}>
-         <Text>{this.state.currentQuestion.description}</Text>
+         <Text>{this.state.currentQuestion.questionDefinition.description}</Text>
          
          <TextInput style = {appStyles.inputQuestionAnswer}
                   underlineColorAndroid = "transparent"
                   placeholder = "Enter your answer here"
                   autoCapitalize = "none"
                   multiline={true}
-                  value={this.state.currentQuestion.Answer}
+                  value={this.state.currentQuestion.answer}
                   onChangeText = {this.handleAnswerEntry}/>
 
          <View style={localStyles.buttonContainer} >

@@ -43,4 +43,24 @@ export class HttpHandler {
 
       return result;
    }
+
+   async AnswerQuestion(question){
+      let result = await fetch(`${this.baseUrl}SurveyQuestions/AnswerQuestion`, {
+         method: 'POST',
+         headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+         body: JSON.stringify(question),
+        })
+        .then(response => { return response.json();})
+        .then(responseData => {
+           return responseData;
+         })
+         .catch((error) => {
+         console.error("Error: " + error);
+      });
+
+      return result;
+   }
  }
