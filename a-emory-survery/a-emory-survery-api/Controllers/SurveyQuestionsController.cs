@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Globalization;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace a_emory_survey_api.Controllers
 {
@@ -20,16 +16,27 @@ namespace a_emory_survey_api.Controllers
         /// <returns></returns>
         public ActionResult GetSurveyQuestions(string code)
         {
-            var unansweredQuestionDefinitions = _dbContext.QuestionDefinition
+            var entry = _dbContext.SurveyEntry.FirstOrDefault(se => se.VerificationCode == code);
+
+            if (entry == null) return BadRequest("Not Valid");
+
+            var unansweredSurveyQuestions = _dbContext.QuestionDefinition
                 .Where(qd => _dbContext.SurveyQuestion.FirstOrDefault(sq => sq.SurveyEntry.VerificationCode == code && sq.QuestionDefinition.Id == qd.Id) == null)
+                .Select(qd => new SurveyQuestion() { 
+                    SurveyEntryId = entry.Id,
+                    SurveyEntry = entry,
+                    QuestionDefinitionId = qd.Id,
+                    QuestionDefinition = qd,
+                })
                 .ToList();
 
-            return Ok(unansweredQuestionDefinitions);
+            return Ok(unansweredSurveyQuestions);
         }
 
-        public ActionResult AnswerQuestion(SurveyQuestion question)
+        [HttpPost]
+        public ActionResult AnswerQuestion([FromBody]SurveyQuestion surveyQuestion)
         {
-            _dbContext.SurveyQuestion.Add(question);
+            _dbContext.SurveyQuestion.Update(surveyQuestion);
             _dbContext.SaveChanges();
 
             return Ok(true);
