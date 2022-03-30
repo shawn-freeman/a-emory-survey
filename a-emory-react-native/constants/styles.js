@@ -2,11 +2,12 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 export const appStyles = StyleSheet.create({
     container: {
+       flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#ccccff',
-        height: Dimensions.get('window').height
+        height: Dimensions.get('window').height,
      },
      input: {
         margin: 15,

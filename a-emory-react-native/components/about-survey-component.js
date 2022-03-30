@@ -8,7 +8,7 @@ export class AboutSurveyComponent extends React.Component
     render(){
     return (
         <View style={appStyles.container}>
-         <View style={appStyles.aboutTextcontainer} >
+         <View style={localStyles.aboutTextcontainer}  >
             <Text>Emory is a variant of the English name Emery. The origin of this name is Germanic, from the Germanic personal name 'Amalric'. The name 'Amalric' is made of two parts, 'amal' meaning 'courageous' and 'ric' meaning 'powerful. Emory means 'a powerfully courageous person'.</Text>
 
             <h3>So what is <strong>A Emory Survey</strong>?</h3>
@@ -41,11 +41,13 @@ export class AboutSurveyComponent extends React.Component
 
 const localStyles = StyleSheet.create({
    aboutTextcontainer: {
+      flex:3, 
+      justifyContent: 'center', //Centered horizontally
+       alignItems: 'center', //Centered vertically
+       maxWidth: Dimensions.get('window').width / 2,
    },
    buttonContainer: {
+      flex: 1,
       flexDirection: 'row',
-   },
-   submitButtonText:{
-      color: 'white',
    },
 });
