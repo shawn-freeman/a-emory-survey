@@ -1,5 +1,11 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
+/*
+Lightest: #CCCCFF - Periwinkle
+Light: #9EA9ED
+Dark: #7575CF
+Darkest: #5453A6
+*/
 export const appStyles = StyleSheet.create({
     container: {
        flex: 1,
