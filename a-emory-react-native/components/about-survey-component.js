@@ -50,4 +50,7 @@ const localStyles = StyleSheet.create({
       flex: 1,
       flexDirection: 'row',
    },
+   submitButtonText:{
+      color: 'white'
+   },
 });
