@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import {Dimensions, StyleSheet, Text, View, Image } from 'react-native';
 import { PubSubEvents } from '../constants/pubsub-events';
+import { appStyles } from '../constants/styles';
 import logo from '../img/amory_A.png'
 
 export class Splash extends React.Component
@@ -15,48 +16,25 @@ export class Splash extends React.Component
 
   componentDidMount() {
     var that = this;
-    setTimeout(function () { that.HideSplashScreen(); }, 1000);
+    setTimeout(function () { that.HideSplashScreen(); }, 3000);
   }
 
   render(){
     return (
-      <View style = { styles.MainContainer }>
-        <View style={styles.SplashScreen_RootView}>
-          <View style={styles.SplashScreen_ChildView}>
-          <Image source={logo}
-            style={{width:'100%', height: '100%', resizeMode: 'contain'}} />
-          </View>
-        </View>
+      <View style={appStyles.container}>
+        <Image source={logo}
+            style={localStyles.logoContainer} />
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create(
+const localStyles = StyleSheet.create(
   {
-    MainContainer:
-    {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: '10%',
-      height: '100%',
-      width: '100%'
-    },
-    SplashScreen_RootView:
-    {
-      justifyContent: 'center',
-      flex:1,
-      margin: 10,
-      position: 'absolute', width: '100%',
-      height: '100%',
-    },
-    SplashScreen_ChildView:
-    {
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      backgroundColor: 'white', 
-      flex:1,
+    logoContainer: {
+      height: Dimensions.get('window').height / 2,
+      width: Dimensions.get('window').width / 2,
+      resizeMode: 'contain',
     },
   }
 );

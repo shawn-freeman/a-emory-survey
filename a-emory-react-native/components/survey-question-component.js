@@ -72,7 +72,6 @@ export class SurveyQuestionComponent extends React.Component
                   </TouchableOpacity>
                </View>
           </View>
-         
        </View>
    );
   }
