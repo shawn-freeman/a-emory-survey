@@ -11,11 +11,11 @@ export class AboutSurveyComponent extends React.Component
          <View style={localStyles.aboutTextcontainer}  >
             <Text>Emory is a variant of the English name Emery. The origin of this name is Germanic, from the Germanic personal name 'Amalric'. The name 'Amalric' is made of two parts, 'amal' meaning 'courageous' and 'ric' meaning 'powerful. Emory means 'a powerfully courageous person'.</Text>
 
-            <h3>So what is <strong>A Emory Survey</strong>?</h3>
+            <Text>So what is A Emory Survey?</Text>
 
             <Text>Part of being a 'courageous person' or 'powerful leader' is the ability 
                to ask and answer the most difficult questions our society faces. 
-               <strong> A Emory Survey</strong> provides an annoymous method to answering 
+               A Emory Survey provides an annoymous method to answering 
                such questions free of judgement. Participation in the survey is completely 
                confidencial, voluntarily and is not shared with any third-party.</Text>
          </View>

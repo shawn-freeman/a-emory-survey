@@ -26,7 +26,7 @@ export class EmailEntryComponent extends React.Component
       return (
          <View style={appStyles.container}>
             <View style={localStyles.headerContainer} >
-               <h1>Welcome to <strong>A Emory Survey</strong>!</h1>
+               <Text>Welcome to A Emory Survey!</Text>
             </View>
 
             <View style={localStyles.submitEmailContainer} >
@@ -96,7 +96,7 @@ const localStyles = StyleSheet.create({
       flex: 1,
       flexDirection: 'column',
       alignItems: 'center',
-      paddingTop: '20px'
+      paddingTop: 20,
    },
    submitButtonText:{
       color: 'white'

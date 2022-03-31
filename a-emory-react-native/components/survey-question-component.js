@@ -108,7 +108,7 @@ const localStyles = StyleSheet.create({
       width: Dimensions.get('window').width / 2,
       backgroundColor: 'white',
       borderColor: '#5453A6',
-      placeholderTextColor: 'black',
+      //placeholderTextColor: '#000000',
       borderWidth: 5,
       borderRadius: 10,
    },

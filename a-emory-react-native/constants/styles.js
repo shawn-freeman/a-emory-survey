@@ -24,7 +24,7 @@ export const appStyles = StyleSheet.create({
         height: 40,
         backgroundColor: 'white',
         borderColor: '#5453A6',
-        placeholderTextColor: 'black',
+        //placeholderTextColor: '#000000',
         borderWidth: 5,
         borderRadius: 10,
      },
