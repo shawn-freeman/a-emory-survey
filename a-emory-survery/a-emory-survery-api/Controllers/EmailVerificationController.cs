@@ -30,9 +30,9 @@ namespace a_emory_survey_api.Controllers
                 var client = new SendGridClient(apiKey);
                 var msg = new SendGridMessage()
                 {
-                    From = new EmailAddress("shawn.david.freeman@outlook.com", "OmegaBloods LLC"),
+                    From = new EmailAddress("support@omegabloods.com", "OmegaBloods LLC"),
                     Subject = "A Emory Survey Email Verification",
-                    PlainTextContent = $"<div>Please verify your email by clicking the link below:</div><div><a href=\"google.com\">Confirm Email</a></div>"
+                    HtmlContent = $"<div>Below is your verification code needed to access your survey within <strong>A Emory Survey</strong>.</div><h1>{code}</h1><div>If you forget or lose this verification code, you can resubmit your email to get a new code to access your existing survey.</div>"
                 };
                 msg.AddTo(new EmailAddress(email, email));
                 var response = await client.SendEmailAsync(msg);
