@@ -15,9 +15,9 @@ export class AboutSurveyComponent extends React.Component
 
             <Text>Part of being a 'courageous person' or 'powerful leader' is the ability 
                to ask and answer the most difficult questions our society faces. 
-               A Emory Survey provides an annoymous method to answering 
+               A Emory Survey provides an anonymous method to answering 
                such questions free of judgement. Participation in the survey is completely 
-               confidencial, voluntarily and is not shared with any third-party.</Text>
+               confidential, voluntarily and is not shared with any third-party.</Text>
          </View>
 
         
