@@ -1,7 +1,7 @@
 global using a_emory_survey_api.Dal;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.EntityFrameworkCore;
-
+using a_emory_survery_api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +18,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<EmorySurveyDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("EmorySurveyDb")));
+
+//Inject SendGrid AppSettings
+builder.Services.Configure<SendGridOptions>(builder.Configuration.GetSection("SendGridOptions"));
 
 var app = builder.Build();
 
