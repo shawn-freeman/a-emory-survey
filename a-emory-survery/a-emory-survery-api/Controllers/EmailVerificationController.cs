@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using a_emory_survery_api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Globalization;
@@ -11,44 +12,28 @@ namespace a_emory_survey_api.Controllers
     public class EmailVerificationController : Controller
     {
         private const int CODE_LENGTH = 5;
+
         private EmorySurveyDbContext _dbContext;
         private IConfiguration _config;
-        public EmailVerificationController(EmorySurveyDbContext dbContext, IConfiguration config)
+        private SendGridOptions _sendGridOptions;
+
+        public EmailVerificationController(EmorySurveyDbContext dbContext, IConfiguration config, IOptions<SendGridOptions> sendGridOptions)
         {
             _dbContext = dbContext;
             _config = config;
+            _sendGridOptions = sendGridOptions.Value;
         }
 
         public async Task<ActionResult> ValidateEmail(string email)
         {
             var isValidEmail = IsValidEmail(email);
-            var code = GenerateVerificationCode(CODE_LENGTH);
 
             if (isValidEmail)
             {
-                var apiKey = _config.GetValue<string>("SENDGRID_API_KEY");
-                var client = new SendGridClient(apiKey);
-                var msg = new SendGridMessage()
-                {
-                    From = new EmailAddress("support@omegabloods.com", "OmegaBloods LLC"),
-                    Subject = "A Emory Survey Email Verification",
-                    HtmlContent = $"<div>Below is your verification code needed to access your survey within <strong>A Emory Survey</strong>.</div><h1>{code}</h1><div>If you forget or lose this verification code, you can resubmit your email to get a new code to access your existing survey.</div>"
-                };
-                msg.AddTo(new EmailAddress(email, email));
-                var response = await client.SendEmailAsync(msg);
+                var code = ValidateSurveyEntry(email);
 
-                //check if one exists
-                var entry = _dbContext.SurveyEntry.FirstOrDefault(se => se.Email == email);
-
-                //if (entry == null)
-                //{
-                //    _dbContext.SurveyEntry.Add(new SurveyEntry() { Email = email, VerificationCode = code });
-                //    _dbContext.SaveChanges();
-                //}
-                //else
-                //{
-
-                //}
+                await SendVerificationEmail(email, code);
+                
                 return Ok(true);
             }
             else
@@ -128,6 +113,46 @@ namespace a_emory_survey_api.Controllers
             string result = b.ToString();
 
             return result;
+        }
+
+        private string ValidateSurveyEntry(string email)
+        {
+            var code = GenerateVerificationCode(CODE_LENGTH);
+
+            //generate a new code if one already exists
+            while (_dbContext.SurveyEntry.Any(se => se.VerificationCode == code))
+            {
+                code = GenerateVerificationCode(CODE_LENGTH);
+            }
+            //check if one exists
+            var entry = _dbContext.SurveyEntry.FirstOrDefault(se => se.Email == email);
+
+            if (entry == null)
+            {
+                _dbContext.SurveyEntry.Add(new SurveyEntry() { Email = email, VerificationCode = code });
+            }
+            else
+            {
+                entry.VerificationCode = code;
+                _dbContext.SurveyEntry.Update(entry);
+            }
+
+            _dbContext.SaveChanges();
+
+            return code;
+        }
+
+        private async Task SendVerificationEmail(string email, string code)
+        {
+            var client = new SendGridClient(_sendGridOptions.ApiKey);
+            var msg = new SendGridMessage()
+            {
+                From = new EmailAddress(_sendGridOptions.From, _sendGridOptions.FromName),
+                Subject = "A Emory Survey Email Verification",
+                HtmlContent = $"<div>Below is your verification code needed to access your survey within <strong>A Emory Survey</strong>.</div><h1>{code}</h1><div>If you forget or lose this verification code, you can resubmit your email to get a new code to access your existing survey.</div>"
+            };
+            msg.AddTo(new EmailAddress(email, email));
+            var response = await client.SendEmailAsync(msg);
         }
     }
 }
