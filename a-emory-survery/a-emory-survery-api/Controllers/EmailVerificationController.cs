@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,30 +12,43 @@ namespace a_emory_survey_api.Controllers
     {
         private const int CODE_LENGTH = 5;
         private EmorySurveyDbContext _dbContext;
-        public EmailVerificationController(EmorySurveyDbContext dbContext)
+        private IConfiguration _config;
+        public EmailVerificationController(EmorySurveyDbContext dbContext, IConfiguration config)
         {
-            this._dbContext = dbContext;
+            _dbContext = dbContext;
+            _config = config;
         }
 
-        public ActionResult ValidateEmail(string email)
+        public async Task<ActionResult> ValidateEmail(string email)
         {
             var isValidEmail = IsValidEmail(email);
+            var code = GenerateVerificationCode(CODE_LENGTH);
 
             if (isValidEmail)
             {
+                var apiKey = _config.GetValue<string>("SENDGRID_API_KEY");
+                var client = new SendGridClient(apiKey);
+                var msg = new SendGridMessage()
+                {
+                    From = new EmailAddress("shawn.david.freeman@outlook.com", "OmegaBloods LLC"),
+                    Subject = "A Emory Survey Email Verification",
+                    PlainTextContent = $"<div>Please verify your email by clicking the link below:</div><div><a href=\"google.com\">Confirm Email</a></div>"
+                };
+                msg.AddTo(new EmailAddress(email, email));
+                var response = await client.SendEmailAsync(msg);
+
                 //check if one exists
                 var entry = _dbContext.SurveyEntry.FirstOrDefault(se => se.Email == email);
 
-                if (entry == null)
-                {
-                    var code = GenerateVerificationCode(CODE_LENGTH);
-                    _dbContext.SurveyEntry.Add(new SurveyEntry() { Email = email, VerificationCode = code });
-                    _dbContext.SaveChanges();
-                }
-                else
-                {
+                //if (entry == null)
+                //{
+                //    _dbContext.SurveyEntry.Add(new SurveyEntry() { Email = email, VerificationCode = code });
+                //    _dbContext.SaveChanges();
+                //}
+                //else
+                //{
 
-                }
+                //}
                 return Ok(true);
             }
             else
