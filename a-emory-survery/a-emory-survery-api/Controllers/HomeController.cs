@@ -18,6 +18,11 @@ namespace a_emory_survey_api.Controllers
             return View();
         }
 
+        public IActionResult Ping()
+        {
+            return Ok($"Service is running. \r\nTimestamp: {DateTime.Now}");
+        }
+
         public IActionResult Privacy()
         {
             return View();
