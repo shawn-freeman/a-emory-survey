@@ -12,27 +12,32 @@ export class SurveyQuestionComponent extends React.Component
    }
 
    async getNextQuestion(){
-    console.log(this.state.currentQuestion);
-    let result = await new HttpHandler().AnswerQuestion(this.state.currentQuestion);
+      if(!this.state.currentQuestion.answer) { 
+         alert('Enter an answer before continuing');
+         return;
+      }
 
-    if(result === true){
-      let nextIndex = this.state.allQuestions
-         .findIndex(question => 
-            question.questionDefinition === this.state.currentQuestion.questionDefinition) + 1;
-    
-      if(nextIndex >= this.state.allQuestions.length){
-          this.props.navigation.navigate(Pages.EndOfSurvey);
-        }else{
-           this.setState({ 
-              currentQuestion: {
-                 ...this.state.allQuestions[nextIndex],
-                 answer: ''
-              }
-           });
-        }
-    }else{
-       alert('An error occured.');
-    }
+      console.log(this.state.currentQuestion);
+      let result = await new HttpHandler().AnswerQuestion(this.state.currentQuestion);
+
+      if(result === true){
+         let nextIndex = this.state.allQuestions
+            .findIndex(question => 
+               question.questionDefinition === this.state.currentQuestion.questionDefinition) + 1;
+      
+         if(nextIndex >= this.state.allQuestions.length){
+            this.props.navigation.navigate(Pages.EndOfSurvey);
+         }else{
+            this.setState({ 
+               currentQuestion: {
+                  ...this.state.allQuestions[nextIndex],
+                  answer: ''
+               }
+            });
+         }
+      }else{
+         alert('An error occured.');
+      }
    }
 
    async exitSurvey(){
