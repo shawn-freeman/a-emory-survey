@@ -50,7 +50,6 @@ function setEnvironment() {
   const envIndexFileLocation = path.resolve(
     __dirname,
     "..",
-    "src",
     "config",
     "env",
     "index.js"

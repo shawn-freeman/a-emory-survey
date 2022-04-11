@@ -1,10 +1,8 @@
+import { env } from "../config/index.js"
+
 export class HttpHandler {
-   //TODO: Replace default baseUrl parameter with a value from environment/appsetting
-   //constructor(baseUrl = 'https://localhost:7240/'){
-   constructor(baseUrl = 'http://testefdeploycoreonlinuxenv-env.eba-7hb3whd2.us-east-1.elasticbeanstalk.com/'){
-      this.baseUrl = baseUrl;
-      let foo = process.env.REACT_APP_API_URL;
-      console.log(foo);
+   constructor(){
+      this.baseUrl = env.api_base_url;
    }
    baseUrl;
     state = {
