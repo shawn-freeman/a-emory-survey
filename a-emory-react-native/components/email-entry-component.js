@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, TouchableOpacity, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Dimensions, Button, TouchableOpacity, StyleSheet, Text, TextInput, View } from 'react-native';
 import { HttpHandler } from '../services/httpHandler';
 import { Pages } from '../constants/pages';
 import { appStyles } from '../constants/styles';
@@ -35,7 +35,7 @@ export class EmailEntryComponent extends React.Component
             <View style={localStyles.submitEmailContainer} >
                <Text style={appStyles.generalText}>To begin, enter a valid email address</Text>
 
-               <TextInput style = {appStyles.input}
+               <TextInput style = {[appStyles.input, localStyles.emailInput]}
                         underlineColorAndroid = "transparent"
                         placeholder = "Email"
                         autoCapitalize = "none"
@@ -107,5 +107,9 @@ const localStyles = StyleSheet.create({
    questionMarkButtonText:{
       color: 'white',
       fontSize: 36,
+   },
+
+   emailInput:{
+      width: Dimensions.get('window').width / 2,
    },
 });
