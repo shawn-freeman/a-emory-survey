@@ -21,6 +21,7 @@ builder.Services.AddDbContext<EmorySurveyDbContext>(options =>
 
 //Inject SendGrid AppSettings
 builder.Services.Configure<SendGridOptions>(builder.Configuration.GetSection("SendGridOptions"));
+builder.Services.Configure<RDSOptions>(builder.Configuration.GetSection("RDSOptions"));
 
 var app = builder.Build();
 
