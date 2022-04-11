@@ -28,7 +28,7 @@ export class EmailVerificationComponent extends React.Component
     return (
        <View style={appStyles.container}>
          <View style={localStyles.codeContainer} >
-            <Text style={appStyles.generalText} >Enter the verification code below:</Text>
+            <Text style={appStyles.generalText} >Enter the verification code that was sent to your email below:</Text>
             
             <TextInput style = {appStyles.input}
                      underlineColorAndroid = "transparent"
