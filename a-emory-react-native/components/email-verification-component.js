@@ -20,7 +20,7 @@ export class EmailVerificationComponent extends React.Component
       if(result.some(a => a)){
          this.props.navigation.navigate(Pages.SurveyQuestion, { questions: result });
       }else{
-         alert('All questions have been answered for this survey. Thank you for your participation.');
+         this.props.navigation.navigate(Pages.EndOfSurvey);
       }
     }
 
@@ -28,7 +28,7 @@ export class EmailVerificationComponent extends React.Component
     return (
        <View style={appStyles.container}>
          <View style={localStyles.codeContainer} >
-            <Text>Enter the verification code below:</Text>
+            <Text style={appStyles.generalText} >Enter the verification code below:</Text>
             
             <TextInput style = {appStyles.input}
                      underlineColorAndroid = "transparent"

@@ -19,6 +19,8 @@ export class EmailEntryComponent extends React.Component
       console.log("GetIsEmailValidResult: " + result);
       if(result){
          this.props.navigation.navigate(Pages.EmailVerification, { email: email});
+      }else{
+         alert('Enter a valid email address.');
       }
     }
 
@@ -26,11 +28,12 @@ export class EmailEntryComponent extends React.Component
       return (
          <View style={appStyles.container}>
             <View style={localStyles.headerContainer} >
-               <Text>Welcome to A Emory Survey!</Text>
+               <Text>Welcome to </Text>
+               <Text style={appStyles.emphasisText}>A Emory Survey</Text>
             </View>
 
             <View style={localStyles.submitEmailContainer} >
-               <Text>To begin, enter a valid email address</Text>
+               <Text style={appStyles.generalText}>To begin, enter a valid email address</Text>
 
                <TextInput style = {appStyles.input}
                         underlineColorAndroid = "transparent"
@@ -52,7 +55,7 @@ export class EmailEntryComponent extends React.Component
             
 
             <View style={localStyles.buttonContainerVertical} >
-               <Text>Already have a code?</Text>
+               <Text style={appStyles.generalText} >Already have a code?</Text>
 
                <TouchableOpacity
                      style = {appStyles.buttonPrimary}

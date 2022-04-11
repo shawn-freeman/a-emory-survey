@@ -21,7 +21,7 @@ export class SurveyQuestionComponent extends React.Component
             question.questionDefinition === this.state.currentQuestion.questionDefinition) + 1;
     
       if(nextIndex >= this.state.allQuestions.length){
-          this.props.navigation.navigate(Pages.EmailEntry);
+          this.props.navigation.navigate(Pages.EndOfSurvey);
         }else{
            this.setState({ 
               currentQuestion: {

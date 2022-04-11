@@ -44,4 +44,12 @@ export const appStyles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
    },
+   generalText:{
+      padding: 10,
+   },
+   emphasisText:{
+      padding: 10,
+      fontWeight: 'bold',
+      fontSize: 20,
+   },
   });
