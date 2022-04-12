@@ -106,7 +106,7 @@ const localStyles = StyleSheet.create({
    },
    questionMarkButtonText:{
       color: 'white',
-      fontSize: 36,
+      fontSize: 24,
    },
 
    emailInput:{
