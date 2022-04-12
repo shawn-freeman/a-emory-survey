@@ -72,20 +72,20 @@ export class SurveyQuestionComponent extends React.Component
             </View>
 
             <View style={localStyles.buttonContainer} >
+            <TouchableOpacity
+                     style = {appStyles.buttonPrimary}
+                     onPress = {
+                        () => { this.exitSurvey(); }
+                     }>
+                     <Text style = {localStyles.submitButtonText}>Exit</Text>
+                  </TouchableOpacity>
+
                <TouchableOpacity
                      style = {appStyles.buttonPrimary}
                      onPress = {
                         () => { this.getNextQuestion(); }
                      }>
                      <Text style = {localStyles.submitButtonText}>Next</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                     style = {appStyles.buttonPrimary}
-                     onPress = {
-                        () => { this.exitSurvey(); }
-                     }>
-                     <Text style = {localStyles.submitButtonText}>Exit</Text>
                   </TouchableOpacity>
                </View>
           </View>
@@ -96,13 +96,13 @@ export class SurveyQuestionComponent extends React.Component
 
 const localStyles = StyleSheet.create({
    questionContainer: {
-      flex: 1,
+      flex: 3,
       justifyContent: 'center',
       alignItems: 'center',
-      width: Dimensions.get('window').width / 2,
+      width: (Dimensions.get('window').width / 10) * 9,
    },
    answerContainer: {
-      flex: 2,
+      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
    },
@@ -110,7 +110,7 @@ const localStyles = StyleSheet.create({
       flex: 1,
       margin: 15,
       padding: 10,
-      width: Dimensions.get('window').width / 2,
+      width: (Dimensions.get('window').width / 4) * 3,
       backgroundColor: 'white',
       borderColor: '#5453A6',
       //placeholderTextColor: '#000000',
@@ -119,7 +119,7 @@ const localStyles = StyleSheet.create({
    },
    buttonContainer: {
       flex: 1,
-      flexDirection: 'column',
+      flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
    },
