@@ -49,9 +49,6 @@ namespace a_emory_survey_api.Controllers
 
             try
             {
-                // (@)          Match the @ character. This part is the first capturing group.
-                // (.+)         Match one or more occurrences of any character. This part is the second capturing group.
-                // $ 	        End the match at the end of the string.
                 var normalizedEmail = Regex.Replace(
                     emailAddress, 
                     @"(@)(.+)$", 
@@ -60,13 +57,10 @@ namespace a_emory_survey_api.Controllers
                     TimeSpan.FromMilliseconds(200)
                     );
 
-                // Examines the domain part of the email and normalizes it.
                 string DomainMapper(Match match)
                 {
-                    // Use IdnMapping class to convert Unicode domain names.
                     var idn = new IdnMapping();
 
-                    // Pull out and process domain name (throws ArgumentException on invalid)
                     string domainName = idn.GetAscii(match.Groups[2].Value);
 
                     return match.Groups[1].Value + domainName;
@@ -83,13 +77,6 @@ namespace a_emory_survey_api.Controllers
 
             try
             {
-                // ^	        Begin the match at the start of the string.
-                // [^@\s]+	    Match one or more occurrences of any character other than the @ character or whitespace.
-                // @	        Match the @ character.
-                // [^@\s]+	    Match one or more occurrences of any character other than the @ character or whitespace.
-                // \.	        Match a single period character.
-                // [^@\s]+	    Match one or more occurrences of any character other than the @ character or whitespace.
-                // $	        End the match at the end of the string.
                 return Regex.IsMatch(emailAddress,
                     @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
                     RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
