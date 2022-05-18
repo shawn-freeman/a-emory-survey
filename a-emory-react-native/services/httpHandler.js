@@ -29,10 +29,6 @@ export class HttpHandler {
     async GetSurveyQuestions(code){
       let result = await fetch(`${this.baseUrl}SurveyQuestions/GetSurveyQuestions?code=${code}`, {
          method: 'GET',
-         // headers: {
-         //    "Accept": "application/json",
-         //    'Content-Type': 'application/json'
-         //    }
         })
         .then(response => { return response.json();})
         .then(responseData => {
